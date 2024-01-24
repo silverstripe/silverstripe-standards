@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="PSR12">
+    <rule ref="PSR12"/>
+    <!-- Tests rely on some code from framework that won't pass this sniff -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+      <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
+    <file>./src</file>
+    <file>./tests</file>
+</ruleset>
