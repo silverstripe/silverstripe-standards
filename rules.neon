@@ -1,0 +1,9 @@
+rules:
+  - SilverStripe\Standards\PHPStan\MethodAnnotationsRule
+
+parameters:
+  # Setting customRulestUsed to true allows us to avoid using the built-in rules
+  # until we're ready for them. For now, we only want to apply the specific rules
+  # we've implemented ourselves.
+  # In the future we can add a "level" config to re-enable built-in rules.
+  customRulesetUsed: true
