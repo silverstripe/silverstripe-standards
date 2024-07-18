@@ -24,6 +24,8 @@ use SilverStripe\ORM\ManyManyThroughList;
  * Validates that `@method` annotations in DataObject and Extension classes are correct,
  * according to the relations defined within those classes.
  *
+ * See https://phpstan.org/developing-extensions/rules
+ *
  * @implements Rule<Class_>
  */
 class MethodAnnotationsRule implements Rule
