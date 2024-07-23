@@ -1,5 +1,6 @@
 rules:
   - SilverStripe\Standards\PHPStan\MethodAnnotationsRule
+  - SilverStripe\Standards\PHPStan\KeywordSelfRule
 
 parameters:
   # Setting customRulestUsed to true allows us to avoid using the built-in rules
