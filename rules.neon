@@ -1,6 +1,7 @@
 rules:
   - SilverStripe\Standards\PHPStan\MethodAnnotationsRule
   - SilverStripe\Standards\PHPStan\KeywordSelfRule
+  - SilverStripe\Standards\PHPStan\TranslationFunctionRule
 
 parameters:
   # Setting customRulestUsed to true allows us to avoid using the built-in rules
