@@ -23,6 +23,8 @@ use PHPStan\Rules\RuleErrorBuilder;
  */
 class KeywordSelfRule implements Rule
 {
+    public const IDENTIFIER = 'keyword.self';
+
     public function getNodeType(): string
     {
         return Node::class;
@@ -69,7 +71,7 @@ class KeywordSelfRule implements Rule
         return [
             RuleErrorBuilder::message(
                 "Can't use keyword 'self'. Use '$actualClass' instead."
-            )->build()
+            )->identifier(self::IDENTIFIER)->build()
         ];
     }
 }
