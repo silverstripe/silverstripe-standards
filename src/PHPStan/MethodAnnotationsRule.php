@@ -30,6 +30,8 @@ use SilverStripe\ORM\ManyManyThroughList;
  */
 class MethodAnnotationsRule implements Rule
 {
+    public const IDENTIFIER = 'annotations.method';
+
     private ReflectionProvider $reflectionProvider;
 
     public function __construct(ReflectionProvider $reflectionProvider)
@@ -69,7 +71,7 @@ class MethodAnnotationsRule implements Rule
             if (!array_key_exists($methodName, $expectedAnnotations)) {
                 $errors[] = RuleErrorBuilder::message(
                     "@method annotation '$annotationString' isn't expected and should be removed."
-                )->build();
+                )->identifier(self::IDENTIFIER)->build();
                 continue;
             }
 
@@ -78,7 +80,7 @@ class MethodAnnotationsRule implements Rule
                 $errors[] = RuleErrorBuilder::message(
                     "@method annotation '$annotationString' should be removed,"
                     . " because a method named '$methodName' already exists."
-                )->build();
+                )->identifier(self::IDENTIFIER)->build();
                 continue;
             }
 
@@ -87,7 +89,7 @@ class MethodAnnotationsRule implements Rule
                 $count = $annotationData['count'];
                 $errors[] = RuleErrorBuilder::message(
                     "@method annotation '$annotationString' appears $count times. Remove the duplicates."
-                )->build();
+                )->identifier(self::IDENTIFIER)->build();
                 continue;
             }
 
@@ -103,7 +105,7 @@ class MethodAnnotationsRule implements Rule
                         $shortClassName = $this->getShortClassName($returnClassName);
                         $errors[] = RuleErrorBuilder::message(
                             "@method annotation '$annotationString' needs a use statement for class '$shortClassName'."
-                        )->build();
+                        )->identifier(self::IDENTIFIER)->build();
                         continue;
                     }
                 }
@@ -111,7 +113,7 @@ class MethodAnnotationsRule implements Rule
                 // Complain about type mismatches
                 $errors[] = RuleErrorBuilder::message(
                     "@method annotation '$annotationString' should be '$expectedAnnotationString'."
-                )->build();
+                )->identifier(self::IDENTIFIER)->build();
                 continue;
             }
 
@@ -120,7 +122,7 @@ class MethodAnnotationsRule implements Rule
             if ($annotationString !== $expectedAnnotationString) {
                 $errors[] = RuleErrorBuilder::message(
                     "@method annotation '$annotationString' should be '$expectedAnnotationString'."
-                )->build();
+                )->identifier(self::IDENTIFIER)->build();
                 continue;
             }
         }
@@ -136,7 +138,7 @@ class MethodAnnotationsRule implements Rule
             $expectedAnnotationString = $missingData['annotationString'];
             $errors[] = RuleErrorBuilder::message(
                 "@method annotation '$expectedAnnotationString' is missing or has an invalid syntax."
-            )->build();
+            )->identifier(self::IDENTIFIER)->build();
         }
 
         return $errors;

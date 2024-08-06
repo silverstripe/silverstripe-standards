@@ -27,6 +27,8 @@ use PHPStan\Type\Generic\GenericClassStringType;
  */
 class TranslationFunctionRule implements Rule
 {
+    public const IDENTIFIER = 'translation.key';
+
     public function getNodeType(): string
     {
         return Node::class;
@@ -109,12 +111,16 @@ class TranslationFunctionRule implements Rule
             return [
                 RuleErrorBuilder::message(
                     'Can\'t determine value of first argument to _t(). Use a simpler value.'
-                )->build()
+                )->identifier(self::IDENTIFIER)->build()
             ];
         }
 
         if (substr_count($argValue, '.') !== 1) {
-            return [RuleErrorBuilder::message('First argument passed to _t() must have exactly one period.')->build()];
+            return [
+                RuleErrorBuilder::message(
+                    'First argument passed to _t() must have exactly one period.'
+                )->identifier(self::IDENTIFIER)->build()
+            ];
         }
 
         return [];
