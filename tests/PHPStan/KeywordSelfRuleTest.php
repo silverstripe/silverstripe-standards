@@ -24,17 +24,20 @@ class KeywordSelfRuleTest extends RuleTestCase
             'interface' => [
                 'filePaths' => [__DIR__ . '/KeywordSelfRuleTest/TestInterface.php'],
                 'errorMessage' => "Can't use keyword 'self'. Use 'TestInterface' instead.",
-                'errorLines' => [13, 18, 18],
+                // Note that 13 only actually has one violation, but does no harm to be counted twice.
+                'errorLines' => [13, 13, 18, 18],
             ],
             'class' => [
                 'filePaths' => [__DIR__ . '/KeywordSelfRuleTest/TestClass.php'],
                 'errorMessage' => "Can't use keyword 'self'. Use 'TestClass' instead.",
-                'errorLines' => [9, 11, 16, 16, 18, 20, 21, 21, 25],
+                // Note that 9 and 21 only actually have one violation, but does no harm to be counted twice.
+                'errorLines' => [9, 9, 11, 16, 16, 18, 20, 21, 21, 21, 25],
             ],
             'enum' => [
                 'filePaths' => [__DIR__ . '/KeywordSelfRuleTest/TestEnum.php'],
                 'errorMessage' => "Can't use keyword 'self'. Use 'TestEnum' instead.",
-                'errorLines' => [9, 14, 14, 16, 17, 18, 20, 24],
+                // Note that 9, 16, and 17 only actually have one violation, but does no harm to be counted twice.
+                'errorLines' => [9, 9, 14, 14, 16, 16, 17, 17, 18, 20, 24],
             ],
             'trait' => [
                 'filePaths' => [
